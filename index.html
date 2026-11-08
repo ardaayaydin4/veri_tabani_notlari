@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>SQL Çalışma Notları</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; color: #333; }
+        table { width: 80%; margin: 20px auto; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        th { background-color: #2C3E50; color: white; }
+        .qa-container { text-align: left; width: 80%; margin: 20px auto; }
+        .question { color: #C0392B; font-weight: bold; margin-bottom: 5px; }
+        .answer { background-color: #ECF0F1; padding: 15px; border-radius: 5px; font-family: monospace; margin-top: 0; }
+    </style>
+</head>
+<body>
+
+    <h2>Örnek Tablo (Ogrenciler)</h2>
+    
+    <table>
+        <tr>
+            <th>Ogrenci_ID</th>
+            <th>Adi</th>
+            <th>Soyadi</th>
+            <th>Bolum</th>
+            <th>Sehir</th>
+            <th>Dogum_Yili</th>
+            <th>Not_Ortalamasi</th>
+        </tr>
+        <tr>
+            <td>1</td><td>Ahmet</td><td>Yılmaz</td><td>Bilgisayar</td><td>İstanbul</td><td>2004</td><td>3.25</td>
+        </tr>
+        <tr>
+            <td>2</td><td>Elif</td><td>kaya</td><td>Elektronik</td><td>İzmir</td><td>2005</td><td>2.80</td>
+        </tr>
+        <tr>
+            <td>3</td><td>Mehmet</td><td>demir</td><td>Bilgisayar</td><td>Ankara</td><td>2003</td><td>3.60</td>
+        </tr>
+        <tr>
+            <td>4</td><td>Ayşe</td><td>Çelik</td><td>Makine</td><td>İstanbul</td><td>2004</td><td>2.10</td>
+        </tr>
+    </table>
+
+    <h2>Soru ve Cevaplar</h2>
+
+    <div class="qa-container">
+        <p class="question">Soru 1: Tablodaki tüm sütunları ve tüm satırları listeleyecek en temel SQL komutu hangisidir?</p>
+        <p class="answer">Cevap 1: SELECT * FROM Ogrenciler;</p>
+        
+        <p class="question">Soru 2: Tablodan sadece öğrencilerin Adi ve Soyadi sütunlarını getiren SQL sorgusu hangisidir?</p>
+        <p class="answer">Cevap 2: SELECT Adi, Soyadi FROM Ogrenciler;</p>
+
+        <p class="question">Soru 3: Aynı bölüm isminin tekrar tekrar görünmesini engelleyerek her bölümü sadece bir kez listeleyen (tekilleştiren) sorgu hangisidir?</p>
+        <p class="answer">Cevap 3: SELECT DISTINCT Bolum FROM Ogrenciler;</p>
+
+        <p class="question">Soru 4: Bölümü 'Bilgisayar' olan öğrencilerin tüm bilgilerini getiren filtreleme sorgusu hangisidir?</p>
+        <p class="answer">Cevap 4: SELECT * FROM Ogrenciler WHERE Bolum = 'Bilgisayar';</p>
+
+        <p class="question">Soru 5: Not ortalaması 3.00 veya daha yüksek olan öğrencilerin sadece adını ve not ortalamasını listeleyen sorgu hangisidir?</p>
+        <p class="answer">Cevap 5: SELECT Adi, Not_Ortalamasi FROM Ogrenciler WHERE Not_Ortalamasi >= 3.00;</p>
+
+        <p class="question">Soru 6: Bölümü 'Bilgisayar' olan VE şehri 'İstanbul' olan öğrencileri getiren sorgu hangisidir?</p>
+        <p class="answer">Cevap 6: SELECT * FROM Ogrenciler WHERE Bolum = 'Bilgisayar' AND Sehir = 'İstanbul';</p>
+
+        <p class="question">Soru 7: Şehri 'Ankara' VEYA 'İzmir' olan öğrencileri listeleyen sorgu hangisidir?</p>
+        <p class="answer">Cevap 7: SELECT * FROM Ogrenciler WHERE Sehir = 'Ankara' OR Sehir = 'İzmir';</p>
+
+        <p class="question">Soru 8: Öğrencileri not ortalamasına göre düşükten yükseğe (artan sırada) sıralayarak getiren SQL sorgusu hangisidir?</p>
+        <p class="answer">Cevap 8: SELECT * FROM Ogrenciler ORDER BY Not_Ortalamasi ASC;</p>
+
+        <p class="question">Soru 9: Öğrencileri not ortalamasına göre en yüksekten en düşüğe (azalan sırada) sıralayan sorgu hangisidir?</p>
+        <p class="answer">Cevap 9: SELECT * FROM Ogrenciler ORDER BY Not_Ortalamasi DESC;</p>
+
+        <p class="question">Soru 10: Doğum yılı 2003 ile 2005 arasında (her iki yıl da dahil) olan öğrencileri filtreleyen en pratik sorgu hangisidir?</p>
+        <p class="answer">Cevap 10: SELECT * FROM Ogrenciler WHERE Dogum_Yili BETWEEN 2003 AND 2005;</p>
+
+        <p class="question">Soru 11: İsmi 'A' harfi ile başlayan öğrencileri listeleyen SQL sorgusu hangisidir?</p>
+        <p class="answer">Cevap 11: SELECT * FROM Ogrenciler WHERE Adi LIKE 'A%';</p>
+
+        <p class="question">Soru 12: Soyadı 'Kaya' OLMAYAN öğrencileri listelemek için yazılması gereken sorgu hangisidir?</p>
+        <p class="answer">Cevap 12: SELECT * FROM Ogrenciler WHERE Soyadi <> 'Kaya';</p>
+
+        <p class="question">Soru 13: Tabloda toplam kaç adet öğrenci (satır) kayıtlı olduğunu hesaplayan sorgu hangisidir?</p>
+        <p class="answer">Cevap 13: SELECT COUNT(*) FROM Ogrenciler;</p>
+
+        <p class="question">Soru 14: Tüm öğrencilerin not ortalamalarının genel ortalamasını veren SQL sorgusu hangisidir?</p>
+        <p class="answer">Cevap 14: SELECT AVG(Not_Ortalamasi) FROM Ogrenciler;</p>
+
+        <p class="question">Soru 15: Tablodaki en yüksek not ortalamasına sahip değeri getiren SQL fonksiyonu hangisidir?</p>
+        <p class="answer">Cevap 15: SELECT MAX(Not_Ortalamasi) FROM Ogrenciler;</p>
+
+        <p class="question">Soru 16: Tablodaki en düşük not ortalamasını listeleyen sorgu hangisidir?</p>
+        <p class="answer">Cevap 16: SELECT MIN(Not_Ortalamasi) FROM Ogrenciler;</p>
+
+        <p class="question">Soru 17: Her bölümde kaçar adet öğrenci olduğunu bölüm isimleriyle birlikte listeleyen kümeleme sorgusu hangisidir?</p>
+        <p class="answer">Cevap 17: SELECT Bolum, COUNT(*) FROM Ogrenciler GROUP BY Bolum;</p>
+
+        <p class="question">Soru 18: Her şehirden okuyan öğrencilerin not ortalamalarının ayrı ayrı ortalamasını şehir bazında gösteren sorgu hangisidir?</p>
+        <p class="answer">Cevap 18: SELECT Sehir, AVG(Not_Ortalamasi) FROM Ogrenciler GROUP BY Sehir;</p>
+
+        <p class="question">Soru 19: COUNT(*) fonksiyonunun ekrana gelen sütun adını geçici olarak 'Toplam_Ogrenci' şeklinde değiştiren takma ad (alias) sorgusu hangisidir?</p>
+        <p class="answer">Cevap 19: SELECT COUNT(*) AS Toplam_Ogrenci FROM Ogrenciler;</p>
+
+        <p class="question">Soru 20: Sorgu sonucunda ekrana gelecek yeni sütun başlığının boşluk içerecek şekilde 'Öğrenci Adı' yazmasını sağlayan doğru sözdizimi hangisidir?</p>
+        <p class="answer">Cevap 20: SELECT Adi AS [Öğrenci Adı] FROM Ogrenciler;</p>
+
+        <p class="question">Soru 21: Tabloya adı 'Can', soyadı 'Öztürk', bölümü 'Hukuk' olan yeni bir öğrenci ekleyen SQL kayıt komutu hangisidir?</p>
+        <p class="answer">Cevap 21: INSERT INTO Ogrenciler (Adi, Soyadi, Bolum) VALUES ('Can', 'Öztürk', 'Hukuk');</p>
+
+        <p class="question">Soru 22: Ogrenci_ID'si 3 olan öğrencinin şehri 'Ankara' iken 'Bursa' olarak değiştirmek (güncellemek) isteyen biri hangi komutu yazmalıdır?</p>
+        <p class="answer">Cevap 22: UPDATE Ogrenciler SET Sehir = 'Bursa' WHERE Ogrenci_ID = 3;</p>
+
+        <p class="question">Soru 23: Ogrenci_ID'si 4 olan öğrenci kaydını tablodan tamamen silen SQL sorgusu hangisidir?</p>
+        <p class="answer">Cevap 23: DELETE FROM Ogrenciler WHERE Ogrenci_ID = 4;</p>
+
+        <p class="question">Soru 24: Eğer DELETE FROM Ogrenciler; komutu arkasına hiçbir WHERE şartı yazılmadan çalıştırılırsa ne olur?</p>
+        <p class="answer">Cevap 24: Tablodaki tüm öğrenci kayıtları (veriler) silinir ama boş tablo yapısı kalır.</p>
+
+        <p class="question">Soru 25: Şehir sütunundaki 'İstanbul' yazan verilerin çıktı ekranında 'İst' olarak görünmesini sağlayan yer değiştirme fonksiyonu hangisidir?</p>
+        <p class="answer">Cevap 25: SELECT REPLACE(Sehir, 'İstanbul', 'İst') FROM Ogrenciler;</p>
+
+        <p class="question">Soru 26: Not ortalaması 2.50 ile 3.50 arasında OLMAYAN öğrencileri listelemek için hangi sorgu doğrudur?</p>
+        <p class="answer">Cevap 26: SELECT * FROM Ogrenciler WHERE Not_Ortalamasi NOT BETWEEN 2.50 AND 3.50;</p>
+
+        <p class="question">Soru 27: İsminin son harfi 'f' olan öğrencileri (örneğin Elif) listelemek için doğru LIKE kalıbı hangisidir?</p>
+        <p class="answer">Cevap 27: SELECT * FROM Ogrenciler WHERE Adi LIKE '%f';</p>
+
+        <p class="question">Soru 28: İçinde 'me' ifadesi geçen öğrencilerin isimlerini listeleyen sorgu hangisidir?</p>
+        <p class="answer">Cevap 28: SELECT * FROM Ogrenciler WHERE Adi LIKE '%me%';</p>
+
+        <p class="question">Soru 29: Tablodaki tüm öğrencilerin not ortalamalarının toplam değerini tek bir sonuç olarak veren sorgu hangisidir?</p>
+        <p class="answer">Cevap 29: SELECT SUM(Not_Ortalamasi) FROM Ogrenciler;</p>
+
+        <p class="question">Soru 30: Bölümü 'Bilgisayar' olan öğrencilerin not ortalamalarının aritmetik ortalamasını getiren sorgu hangisidir?</p>
+        <p class="answer">Cevap 30: SELECT AVG(Not_Ortalamasi) FROM Ogrenciler WHERE Bolum = 'Bilgisayar';</p>
+
+        <p class="question">Soru 31: Her bölümdeki en yüksek not ortalamasını bölüm adıyla listeleyen SQL komutu hangisidir?</p>
+        <p class="answer">Cevap 31: SELECT Bolum, MAX(Not_Ortalamasi) FROM Ogrenciler GROUP BY Bolum;</p>
+
+        <p class="question">Soru 32: Uzun tablo ismi olan 'Ogrenciler' tablosuna geçici olarak 'o' lakabını takarak adı sütununu çeken sorgu hangisidir?</p>
+        <p class="answer">Cevap 32: SELECT o.Adi FROM Ogrenciler AS o;</p>
+
+        <p class="question">Soru 33: Tüm öğrencileri önce 'Bolum' adına göre (A'dan Z'ye), bölümleri aynı olanları ise kendi içinde 'Not_Ortalamasi'na göre (yüksekten düşüğe) sıralayan sorgu hangisidir?</p>
+        <p class="answer">Cevap 33: SELECT * FROM Ogrenciler ORDER BY Bolum ASC, Not_Ortalamasi DESC;</p>
+
+        <p class="question">Soru 34: Not_Ortalamasi alanı boş bırakılmış (Null girilmiş) olan öğrencileri bulup listeleyen doğru SQL koşulu hangisidir?</p>
+        <p class="answer">Cevap 34: SELECT * FROM Ogrenciler WHERE Not_Ortalamasi IS NULL;</p>
+
+        <p class="question">Soru 35: Not_Ortalamasi alanı boş bırakılmamış (yani içerisine bir not girilmiş) öğrencileri filtreleyen sorgu hangisidir?</p>
+        <p class="answer">Cevap 35: SELECT * FROM Ogrenciler WHERE Not_Ortalamasi IS NOT NULL;</p>
+
+        <p class="question">Soru 36: Tüm öğrencilerin not ortalamasını 0.50 puan yükseltecek şekilde güncelleyen toplu UPDATE sorgusu hangisidir?</p>
+        <p class="answer">Cevap 36: UPDATE Ogrenciler SET Not_Ortalamasi = Not_Ortalamasi + 0.50;</p>
+
+        <p class="question">Soru 37: Bölümü 'Makine' olan tüm öğrencileri tablodan tek seferde silen sorgu hangisidir?</p>
+        <p class="answer">Cevap 37: DELETE FROM Ogrenciler WHERE Bolum = 'Makine';</p>
+
+        <p class="question">Soru 38: İsminin ikinci harfi 'h' olan öğrencileri (örneğin Ahmet) listemek için hangi LIKE kalıbı kullanılmalıdır?</p>
+        <p class="answer">Cevap 38: SELECT * FROM Ogrenciler WHERE Adi LIKE '_h%';</p>
+
+        <p class="question">Soru 39: Doğum yılları benzersiz (tekrar etmeyecek) şekilde toplam kaç farklı doğum yılı olduğunu sayan sorgu hangisidir?</p>
+        <p class="answer">Cevap 39: SELECT COUNT(DISTINCT Dogum_Yili) FROM Ogrenciler;</p>
+
+        <p class="question">Soru 40: Bölüm adlarını çıktı ekranında tamamen büyük harfe dönüştürerek listeleyen fonksiyon hangisidir?</p>
+        <p class="answer">Cevap 40: SELECT UPPER(Bolum) FROM Ogrenciler;</p>
+
+        <p class="question">Soru 41: Not ortalaması 2.00, 3.00 veya 4.00 değerlerinden herhangi birine tam eşit olan öğrencileri listeleyen en temiz sorgu hangisidir?</p>
+        <p class="answer">Cevap 41: SELECT * FROM Ogrenciler WHERE Not_Ortalamasi IN (2.00, 3.00, 4.00);</p>
+
+        <p class="question">Soru 42: Şehri 'İstanbul' OLMAYAN ve bölümü 'Bilgisayar' olan öğrencileri listeleyen sorgu hangisidir?</p>
+        <p class="answer">Cevap 42: SELECT * FROM Ogrenciler WHERE Sehir <> 'İstanbul' AND Bolum = 'Bilgisayar';</p>
+
+        <p class="question">Soru 43: Tablonun içindeki tüm verileri silmek ama tablo şemasını (boş tabloyu) veritabanında korumak için hangi komut kullanılır?</p>
+        <p class="answer">Cevap 43: DELETE FROM Ogrenciler;</p>
+
+        <p class="question">Soru 44: Bölümü 'Elektronik' olan öğrencilerin not ortalamasını tam olarak 4.00 yapacak şekilde güncelleyen sorgu hangisidir?</p>
+        <p class="answer">Cevap 44: UPDATE Ogrenciler SET Not_Ortalamasi = 4.00 WHERE Bolum = 'Elektronik';</p>
+
+        <p class="question">Soru 45: Her bölümde okuyan öğrencilerin en düşük not ortalamasını gösteren sorgu hangisidir?</p>
+        <p class="answer">Cevap 45: SELECT Bolum, MIN(Not_Ortalamasi) FROM Ogrenciler GROUP BY Bolum;</p>
+
+        <p class="question">Soru 46: Not_Ortalamasi sütun ismini o anlık çıktı ekranında 'Gano' olarak değiştiren sorgu hangisidir?</p>
+        <p class="answer">Cevap 46: SELECT Not_Ortalamasi AS Gano FROM Ogrenciler;</p>
+
+        <p class="question">Soru 47: İsmi tam olarak 5 harften oluşan öğrencileri listelemek için hangi LIKE kalıbı kullanılmalıdır?</p>
+        <p class="answer">Cevap 47: SELECT * FROM Ogrenciler WHERE Adi LIKE '     ';</p>
+
+        <p class="question">Soru 48: Doğum yılı 2004 olan öğrencilerin sayısını bulan SQL komutu hangisidir?</p>
+        <p class="answer">Cevap 48: SELECT COUNT(*) FROM Ogrenciler WHERE Dogum_Yili = 2004;</p>
+
+        <p class="question">Soru 49: Bir SQL sorgusunda yazım sırası (Syntax) kurallarına göre en sonda yer alması gereken komut tümcesi hangisidir?</p>
+        <p class="answer">Cevap 49: ORDER BY</p>
+
+        <p class="question">Soru 50: Tablonun adını anlık olarak 'Ogrenci_Listesi' şeklinde kod içinde kullanabilmek için FROM kısmında nasıl bir AS tanımlaması yapılmalıdır?</p>
+        <p class="answer">Cevap 50: FROM Ogrenciler AS Ogrenci_Listesi</p>
+    </div>
+
+</body>
+</html>
